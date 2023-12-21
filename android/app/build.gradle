@@ -1,0 +1,35 @@
+apply plugin: "com.android.application"
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.booking" // Change to your app's package name
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1 // Increment this for each release
+        versionName "1.0" // Increment this for each release
+        multiDexEnabled true // Enable multidex if needed
+        ndk {
+            abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // Enable code minification and obfuscation
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.facebook.react:react-native:+" // Use the version of React Native you are using
+
+    // Add other dependencies as needed
+    // implementation "com.example:example-library:1.0.0"
+}
+
+// Apply the Google services plugin if you use Firebase or other Google services
+apply plugin: "com.google.gms.google-services"
